@@ -16,13 +16,18 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v2
         with:
-          node-version: '18.x'
+          node-version: '14.x'
 
       - name: Install Pulumi
         run: npm install -g pulumi
 
       - name: Install Dependencies
         run: npm install
+
+      - name: Pulumi Stack Select
+        env:
+          PULUMI_ACCESS_TOKEN: ${{ secrets.PULUMI_ACCESS_TOKEN }}
+        run: pulumi stack select dev2
 
       - name: Pulumi Preview
         env:
