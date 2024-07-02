@@ -38,7 +38,7 @@ new aws.ec2.RouteTableAssociation("my-route-table-association", {
 // Create Security Group
 const securityGroup = new aws.ec2.SecurityGroup("web-secgrp", {
     vpcId: vpc.id,
-    description: "Enable HTTP access",
+    description: "Enable HTTP and SSH access",
     ingress: [
         {
             protocol: "tcp",
@@ -55,7 +55,7 @@ const securityGroup = new aws.ec2.SecurityGroup("web-secgrp", {
     ],
     egress: [
         {
-            protocol: "tcp",
+            protocol: "-1",
             fromPort: 0,
             toPort: 0,
             cidrBlocks: ["0.0.0.0/0"],
@@ -69,10 +69,11 @@ const size = "t3.small"; // Change as needed
 const ami = "ami-04a81a99f5ec58529";
 
 for (let i = 0; i < 2; i++) {
-    new aws.ec2.Instance(`server-${i}`, {
+    new aws.ec2.Instance(`web-server-${i}`, {
         instanceType: size,
         ami: ami,
         subnetId: publicSubnet.id,
-        securityGroups: [securityGroup.name],
+        securityGroupIds: [securityGroup.id], // Use securityGroupIds instead of securityGroups
     });
 }
+
