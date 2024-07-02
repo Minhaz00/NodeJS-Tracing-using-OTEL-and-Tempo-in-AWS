@@ -68,12 +68,19 @@ const size = "t3.small"; // Change as needed
 
 const ami = "ami-04a81a99f5ec58529";
 
-for (let i = 0; i < 2; i++) {
-    new aws.ec2.Instance(`web-server-${i}`, {
-        instanceType: size,
-        ami: ami,
-        subnetId: publicSubnet.id,
-        securityGroupIds: [securityGroup.id], // Use securityGroupIds instead of securityGroups
-    });
-}
+
+new aws.ec2.Instance(`express-redis-mysql-server`, {
+    instanceType: size,
+    ami: ami,
+    subnetId: publicSubnet.id,
+    securityGroupIds: [securityGroup.id], // Use securityGroupIds instead of securityGroups
+});
+
+
+new aws.ec2.Instance(`otel-tempo-grafana-server`, {
+    instanceType: size,
+    ami: ami,
+    subnetId: publicSubnet.id,
+    securityGroupIds: [securityGroup.id], // Use securityGroupIds instead of securityGroups
+});
 
