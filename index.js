@@ -66,14 +66,6 @@ const securityGroup = new aws.ec2.SecurityGroup("web-secgrp", {
 // Create EC2 Instances
 const size = "t3.small"; // Change as needed
 
-// const ami = aws.ec2.getAmi({
-//     filters: [
-//         { name: "name", values: ["amzn2-ami-hvm-*-x86_64-gp2"] },
-//     ],
-//     owners: ["137112412989"], // Amazon
-//     mostRecent: true,
-// }).then(ami => ami.id);
-
 const ami = "ami-04a81a99f5ec58529";
 
 for (let i = 0; i < 2; i++) {
