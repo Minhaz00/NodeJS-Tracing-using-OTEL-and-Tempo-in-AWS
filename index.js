@@ -66,7 +66,7 @@ const securityGroup = new aws.ec2.SecurityGroup("web-secgrp", {
 // Create EC2 Instances
 const size = "t3.small"; // Change as needed
 
-const ami = "ami-04a81a99f5ec58529";
+const ami = "ami-060e277c0d4cce553";
 
 
 new aws.ec2.Instance("express-redis-mysql-server", {
