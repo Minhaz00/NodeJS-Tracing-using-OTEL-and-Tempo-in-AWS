@@ -69,7 +69,7 @@ const size = "t3.small"; // Change as needed
 const ami = "ami-04a81a99f5ec58529";
 
 
-new aws.ec2.Instance(`express-redis-mysql-server`, {
+new aws.ec2.Instance("express-redis-mysql-server", {
     instanceType: size,
     ami: ami,
     subnetId: publicSubnet.id,
@@ -77,7 +77,7 @@ new aws.ec2.Instance(`express-redis-mysql-server`, {
 });
 
 
-new aws.ec2.Instance(`otel-tempo-grafana-server`, {
+new aws.ec2.Instance("otel-tempo-grafana-server", {
     instanceType: size,
     ami: ami,
     subnetId: publicSubnet.id,
