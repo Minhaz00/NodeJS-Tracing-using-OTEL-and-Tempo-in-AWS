@@ -5,6 +5,7 @@ const aws = require("@pulumi/aws");
 const vpc = new aws.ec2.Vpc("my-vpc", {
     cidrBlock: "10.0.0.0/16",
 });
+console.log(vpc.id);
 
 // Create an Internet Gateway
 const igw = new aws.ec2.InternetGateway("my-igw", {
