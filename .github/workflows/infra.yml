@@ -31,7 +31,7 @@ jobs:
 
       - name: Configure Pulumi
         run: |
-          pulumi stack select dev4
+          pulumi stack select dev5
           pulumi config set aws:region ap-southeast-1
           echo "PUBLIC_KEY=${{ secrets.PUBLIC_KEY }}" >> .env
 
