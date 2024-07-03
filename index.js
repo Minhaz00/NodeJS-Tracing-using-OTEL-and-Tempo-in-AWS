@@ -4,6 +4,9 @@ const aws = require("@pulumi/aws");
 // Create a VPC
 const vpc = new aws.ec2.Vpc("my-vpc", {
     cidrBlock: "10.0.0.0/16",
+     tags: {
+        Name: "my-vpc",
+    },
 });
 console.log(vpc.id);
 
@@ -17,6 +20,7 @@ const publicSubnet = new aws.ec2.Subnet("my-public-subnet", {
     vpcId: vpc.id,
     cidrBlock: "10.0.1.0/24",
     mapPublicIpOnLaunch: true,
+    availabilityZone: "us-east-1a", // Specify your desired availability zone
 });
 
 // Create a Route Table
@@ -66,9 +70,7 @@ const securityGroup = new aws.ec2.SecurityGroup("web-secgrp", {
 
 // Create EC2 Instances
 const size = "t3.small"; // Change as needed
-
 const ami = "ami-060e277c0d4cce553";
-
 
 new aws.ec2.Instance("express-redis-mysql-server", {
     instanceType: size,
@@ -77,11 +79,9 @@ new aws.ec2.Instance("express-redis-mysql-server", {
     securityGroupIds: [securityGroup.id],
 });
 
-
 new aws.ec2.Instance("otel-tempo-grafana-server", {
     instanceType: size,
     ami: ami,
     subnetId: publicSubnet.id,
-    securityGroupIds: [securityGroup.id], 
+    securityGroupIds: [securityGroup.id],
 });
-
