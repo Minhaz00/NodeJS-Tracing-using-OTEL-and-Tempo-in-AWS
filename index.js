@@ -73,7 +73,7 @@ new aws.ec2.Instance(`express-redis-mysql-server`, {
     instanceType: size,
     ami: ami,
     subnetId: publicSubnet.id,
-    securityGroupIds: [securityGroup.id], // Use securityGroupIds instead of securityGroups
+    securityGroupIds: [securityGroup.id],
 });
 
 
@@ -81,6 +81,6 @@ new aws.ec2.Instance(`otel-tempo-grafana-server`, {
     instanceType: size,
     ami: ami,
     subnetId: publicSubnet.id,
-    securityGroupIds: [securityGroup.id], // Use securityGroupIds instead of securityGroups
+    securityGroupIds: [securityGroup.id], 
 });
 
